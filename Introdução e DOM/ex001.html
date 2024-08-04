@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu primeiro Javascript</title>
+
+    <style>
+        body {
+            background-color: rgb(101, 101, 209);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Olá mundo</h1>
+
+    <p>apresentação de página html com estilo css e script Javascript</p>
+
+    <script>
+
+        // o comando window.prompt cria variáveis do tipo STRING. Dessa forma é usado o comando Number.parseInt(var) para transformar a string em um numero inteiro.
+        // nesse contexto o "var" indica uma variável qualquer
+        // também seria possível usar o comando Number(var)que aceitaria tanto números do tipo int como números do tipo float
+        // Para transformar um inteiro em uma String é usado o comando var.toString ou o comando String(var).
+
+        var n1 = Number.parseInt(window.prompt("Primeiro numero?"));
+
+        var n2 = Number.parseInt(window.prompt("Segundo Numero?"));
+
+        total = n1 + n2;
+
+
+        window.alert("a soma é: " + total);
+
+      
+    </script>
+</body>
+</html>

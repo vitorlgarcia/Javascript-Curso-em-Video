@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    
+    <style>
+        body {
+            background-color: rgba(7, 36, 21, 0.534);
+            color: white;
+            font: normal 18pt Arial;
+            
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Iniciando estudos com DOM</h1>
+
+    <p>DOM -> Document Object Model (Modelo de Objetos para Documentos)</p>
+
+    <p>Definição: Conjunto de objetos dentro do navegador que dará acesso aos componentes internos dentro do website. Dessa forma, não funciona no Node JS.</p>
+
+    <p>Árvore DOM de um site: Mostra a hierarquia de todos os componentes e estruturas que formam uma página web. A raiz dessa hierarquia é o window. Dentro de window existem vários "filhos", colocados como os mais usados: o location, document e history.</p>
+
+    <section>
+        <img src="arvore dom.PNG" alt="arvore-DOM" width="300px" height="500px">
+    </section>
+   
+
+    <ul>
+        <li><strong>Location:</strong> qual é a localização do site, qual é a página atual, pagina anterior. </li>
+        <li><strong>Document:</strong> documento atual.</li>
+        <li><strong>History: </strong>Paginas visitadas anteriormente.</li>
+    </ul>
+
+    <p>Dentre outras, existem 5 maneiras de navegar entre esses vários componentes usando DOM, conforme figura abaixo:</p>
+
+    <section>
+        <img src="selecao do DOM.PNG" alt="tipos acesso DOM" width="300px" height="500px">
+
+    </section>
+
+    <p>Seleção dos elementos por: 
+        <ul>
+        <li><strong>MARCA: </strong><code>getElementsByTagName()</code></li>
+        <li><strong>ID: </strong><code>getElementById()</code></li>
+        <li><strong>NOME: </strong><code>getElementsByName()</code></li>
+        <li><strong>CLASSE: </strong><code>getElementsByClassName()</code></li>
+        <li><strong>SELETOR: </strong><code>querySelector()</code> ou <code>querySelectorAll()</code></li>
+
+        </ul>
+    
+
+   
+    <p>___________________________________________</p>
+
+
+    <p name="paragrafo">aqui vai o resultado</p>
+    
+    <div id="teste">Clique em mim</div>
+
+    <p class="DOM">Aprendendo a usar o <strong>DOM</strong> em JavaScript.</p>
+
+
+    <script>
+        window.document.write("Usando as seleções do DOM... (Daqui para frente é necessário observar o código...) <br><br>");
+
+        // Usando seleção de elementos por "MARCA":
+        // Seleção por marca significa que a seleção é feita pela tag HTML.
+        // No exemplo abaixo foi escolhido a seleção pela tag "p" de parágrafo. Para diferenciar o parágrafo a ser escolhido, é usado um colchete que inicia do 0 (primeiro parágrafo) até o ultimo. Como se os parágrafos estivessem guardados dentro de um grande vetor que inicia do índice 0.
+        var p1 = window.document.getElementsByTagName('p')[0];
+        window.document.write("Está escrito assim: " + p1.innerText) // o innerText é um comando de impressão do texto literal (sem formatação). Ainda existe o "innerHTML" que imprime na tela o texto com a mesma formatação feita anteriormente,
+
+        p1.style.color = 'green'; // coloriu o primeiro parágro de verde através do comando DOM no javascript.
+        
+
+        // Usando seleção de elemento por ID:
+        var d = window.document.getElementById("teste");
+        d.style.background = "blue";
+
+      // não é necessário criar variavel para usar o DOM. Exemplo:
+   // window.document.getElementById("teste").style.background = "pink";
+
+
+
+        // Usando a seleção de elemento por name
+        var p = window.document.getElementsByName('paragrafo')[0]; // por esse comando estar no plural, é necessario colocar a ordem do paragrafo desejado em colchetes para encontrá-lo.
+        p.style.background = 'pink';
+
+        // usando a seleção por classe segue o mesmo padrao.
+
+
+        // Ja a seleção por seletor encontra a tag desejada se for escrito o nome da tag#id ou tag.class. Exemplos:
+
+        var x = window.document.querySelector('p.DOM');
+
+        x.style.color = 'black'
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Array</title>
+
+    <style>
+        body {
+            background-color: rgb(82, 82, 221);
+            font: normal 15pt Arial;
+            
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.438);
+        }
+
+        select#ivalores {
+            width: 150px;
+        }
+
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.8em;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Desafio Arrays</h1>
+    </header>
+
+    <section>
+        <div>
+            <label for="inumber">Número (entre 1 e 100): </label>
+            <input type="number" name="number" id="inumber">
+            <input type="button" value="Adicionar" onclick="adicionar()"> <br>
+            <br>
+
+            <select name="valores" id="ivalores" size="10">
+
+            </select>
+            <br>
+            <input type="submit" value="Finalizar" onclick="calcular()">
+
+        </div>
+
+        <div id="result">
+
+        </div>
+
+    </section>
+   
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+
+    <script>
+            var vetor = [];
+            var numero = window.document.getElementById("inumber");
+            var valores = document.getElementById("ivalores");
+            var resultado = document.querySelector("div#result");
+
+            // Repare que a inicialização do DOM foi colocada antes da função. Se o vetor fosse colocado dentro da função "adicionar()", o mesmo seria inicializado e zerado toda vez que alguem clicasse para adicionar um número.
+
+
+        function adicionar() {
+
+            if (numero.value.length == 0) {
+                window.alert("Por favor, insira um número válido");
+            }
+
+            else if (Number(numero.value) <= 0 || Number(numero.value) > 100) {
+                window.alert("Numero inválido. Por favor digite outro!");
+            }
+
+            else if (nalista(numero.value, vetor)) { // chamada a função na lista e apresenta como parâmetros o valor string da variável numero e o vetor. O objetivo é saber se o usuário quer colocar um número repetido na lista.
+                window.alert("Numero não pode ser repetido. Tente outro");
+            }
+
+            else {
+                var num = Number(numero.value);
+                var item = document.createElement('option');
+                item.text = `Valor ${num} adicionado`
+                vetor.push(num);
+                valores.appendChild(item);
+                resultado.innerHTML = "" // isso vai fazer com que as respostas sejam limpas sempre que eu adicionar novos números no input.
+            }
+
+            numero.value = ""; //simplesmente apaga o que já foi digitado
+            numero.focus(); // comando que focaliza o input do tipo number após clicar em adicionar. Desse modo ele sempre fica selecionado para colocar mais numeros quando adiciono numeros.
+            
+        }
+
+        function nalista(numero, lista) { // recebe o novo numero no formato string e recebe o vetor completo até o momento. Se o número recém-digitado não estiver presente (se o indexOF não retornar -1) no vetor, signifca que ele é novo número. Daí o retorno é TRUE.
+
+            if (lista.indexOf(Number(numero)) != -1) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+
+        function calcular() {
+
+            if (vetor.length == 0) {
+                window.alert("Preencha a caixa com números válidos");
+            }
+
+            else {
+
+            var tamanho = vetor.length;
+            //var maximo = Math.max(...vetor); // Precisa colocar esses ... para a função funcionar
+            //var minimo = Math.min(...vetor);
+
+            var maximo = vetor[0];
+            var minimo = vetor[0];
+
+            for (var iteracao = 0; iteracao < vetor.length; iteracao++) { // para encontrar o valor máximo e minimo de um array sem precisar da função Math.max ou Math.min
+                if (vetor[iteracao] > maximo) {
+                    maximo = vetor[iteracao];
+                }
+
+                if (vetor[iteracao] < minimo) {
+                    minimo = vetor[iteracao];
+                }
+            }
+
+
+            var soma = 0;
+            var media = 0;
+            for (var iteracao = 0; iteracao < vetor.length; iteracao++) {
+                soma += vetor[iteracao];
+                
+            }
+
+            media = soma / vetor.length;
+
+
+        
+
+                resultado.innerHTML = "";
+
+                resultado.innerHTML += `<p>Ao todo, temos ${tamanho} numeros cadastrados.</p>`;
+
+                resultado.innerHTML += `<p>O maior valor informado foi ${maximo}.</p>`;
+
+                resultado.innerHTML += `<p>O menor valor informado foi ${minimo}. </p>`
+
+                resultado.innerHTML += `<p>Somando todos os valores, temos ${soma}. </p>`
+
+                resultado.innerHTML += `<p>A média dos valores digitados é ${media.toFixed(2)}.</p>` // toFixed deixa fixado tantas casas após a virgula. Estipulei 2 casas após a virgula.
+
+            }
+    }
+
+    </script>

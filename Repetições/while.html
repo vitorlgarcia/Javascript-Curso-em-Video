@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio While</title>
+
+    <style>
+        body {
+            background-color: rgb(82, 82, 221);
+            font: normal 15pt Arial;
+            
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.438);
+        }
+
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Desafio While</h1>
+    </header>
+
+    <section>
+        <div>
+
+            <p>
+                <label for="iinicio">Início: </label>
+                <input type="number" name="inicio" id="iinicio">
+            </p>
+
+            <p>
+                <label for="ifim">Fim: </label>
+                <input type="number" name="fim" id="ifim">
+            </p>
+
+            <p>
+                <label for="ipasso">Passo: </label>
+                <input type="number" name="passo" id="ipasso">
+            </p>
+
+            <p>
+                <input type="submit" value="Contar" onclick="Contar()">
+            </p>
+
+
+        </div>
+            
+        <div id="resultado">
+            Preparando a contagem...
+
+        </div>
+
+    </section>
+   
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+
+
+    <script>
+       function Contar() {
+            var inicio = document.getElementById('iinicio'); // p comando DOM não retorna string, int ou qualquer tipo primitivo. Na verdade ele retorna um objeto (POO) "Object HTML Input Element". Para destacar o valor colocado no input, é necessário colocar o .value na frente da variável. Ex: "inicio.value"
+
+            var fim = document.getElementById('ifim');
+
+            var passo = document.getElementById('ipasso');
+
+            var resultado = document.getElementById("resultado");
+
+
+            // Se o comprimento de cada valor (.value) for igual a zero, significa que nada foi digitado
+
+            if (inicio.value.length == 0 || fim.value.length == 0 || passo.value.length == 0) {
+            
+                window.alert("Por favor, preencha todas as lacunas com números válidos");
+            }
+
+            // ao colocar o .value na frente da variavel, o numero digitado lá no input do HTML é convertido em uma string. Ex: Se for digitado no input "início" o número 10, o .value converte na string "10" e o .length indica "2", ou seja, string de comprimento dois elementos.
+
+            else if (Number(passo.value == 0)) {
+                window.alert("O numero de passos não pode ser 0");
+            }
+        
+
+            else if (Number(inicio.value) > Number(fim.value) && Number(passo.value) >= 0) {
+                window.alert("Se o início for maior que o fim, os passos devem ser negativos");
+
+                // a função Number() foi usada para transformar os valores strings em números. Primeiro foi usado o .value para extrair o valor de cada objeto, sendo cada um transformado em string automaticamente e a função Number transformou tudo em número. 
+            }
+
+            else if (Number(inicio.value) < Number(fim.value) && Number(passo.value) <= 0) {
+                window.alert("Se o inicio for menor que o fim, os passos devem ser positivos");
+            }
+
+            else {
+                // criando novas variaveis preenchidas com os valores convertidos para números. Assim não precisarei mais da função Number().
+
+                var ini = Number(inicio.value);
+
+                var final = Number(fim.value);
+
+                var pass = Number(passo.value);
+
+                resultado.innerText = "Contando... "; // Repare que esse comando não tem o sinal "+=" que concatena os textos. Foi usado estrategicamente para apagar a contagem anterior sempre que o botão "contar" for clicado. 
+
+                if (ini <= final) { // se o valor inicial for menor que ofinal, será utilizado o primeiro laço de FOR onde se faz a comparação da contagem menor ou igual o final.
+                    for (var contagem = ini; contagem <= final; contagem += pass) {
+
+                        resultado.innerHTML += `${contagem} \u{1F449}`;
+
+                        // Se eu não usar o comando "+=", a função innerHTML ou innerText não irão concatenar os numeros, ou seja, a cada vez que a instrução entrar no laço for, o novo número contado será escrito no lugar do número anterior.
+                    }
+                    resultado.innerHTML += `\u{1F3C1}` // os emoticons e outros simbolos unicode só funcionam entre crases (`).
+                }
+
+                else if (ini > final) {
+                    for (var contagem = ini; contagem >= final; contagem += pass) {
+
+                        resultado.innerHTML += `${contagem} \u{1F449}`;
+
+                        // Se eu não usar o comando "+=", a função innerHTML ou innerText não irão concatenar os numeros, ou seja, a cada vez que a instrução entrar no laço for, o novo número contado será escrito no lugar do número anterior.
+                    }
+                    resultado.innerHTML += `\u{1F3C1}` // os emoticons e outros simbolos unicode só funcionam entre crases (`).
+                }
+                
+            }
+            
+        }
+
+    </script>

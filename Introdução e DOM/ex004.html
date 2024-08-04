@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somando Números</title>
+
+    <style>
+        body {
+            font: normal 18pt Arial;
+        }
+
+        input {
+            font: normal 1apt Arial;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Somando Valores</h1>
+    <label for="inumber">Digite o primeiro numero: </label>
+    <input type="number" name="number" id="inumber" step="0.5"> <br>
+    <label for="inumber2">Digite o Segundo Número</label>
+    <input type="number" name="number2" id="inumber2" step="0.5"> <br>
+    <input type="submit" value="Somar" onclick="somar()"><br>
+
+    <div id="result">Resultado</div><br>
+
+    <script>
+        function somar() {
+          var a = parseInt(window.document.getElementsByName('number')[0].value); 
+          var b = parseInt(window.document.getElementsByName('number2')[0].value);
+
+/* USANDO A SELECAO POR ID
+
+          var a = parseInt(window.document.getElementById('inumber').value); 
+          var b = parseInt(window.document.getElementById("inumber2").value);
+*/
+
+          soma = a + b;
+          result.innerText = `A soma entre ${a} e ${b} é de ` + soma;
+        }
+
+    </script>
+    
+</body>
+</html>

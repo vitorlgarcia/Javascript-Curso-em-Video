@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condição if</title>
+</head>
+<body>
+    <main>
+        <h1>Sistema de multas</h1>
+        <label for="iveloc">Velocidade do carro: </label>
+        <input type="number" name="veloc" id="iveloc">km/h <br>
+        <input type="submit" value="Verificar Velocidade" onclick="multa()"> <br> <br>
+
+        <div id="mens">mensagem</div>
+
+    </main>
+    
+
+    <script>
+   
+        function multa() {
+            velocidade = window.document.getElementById('iveloc');
+
+            velocidade = Number(velocidade.value);
+
+            vel = window.document.getElementById('mens')
+
+            if (velocidade > 100) {
+                vel.innerText = "Velocidade acima do permitido. Você será multado"
+            } else {
+                vel.innerText = "Velocidade nos padrões. Siga seu caminho"
+            }
+
+        }
+
+    </script>
+
+
+    
+</body>
+</html>

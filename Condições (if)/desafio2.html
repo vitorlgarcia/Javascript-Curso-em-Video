@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2</title>
+
+    <style>
+        body {
+            background-color: rgb(82, 82, 221);
+            font: normal 15pt Arial;
+            
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.438);
+        }
+
+        img#imagem {
+            width: 490px;
+            height: 400px;
+            padding: 5px;
+        }
+
+        div#resultado {
+            text-align: center;
+        }
+
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Desafio 2</h1>
+    </header>
+
+    <section>
+        <div id="frase">
+            <p>
+                <label for="inascimento" min="1900" step="1">Ano de Nascimento: </label>
+                <input type="number" name="nascimento" id="inascimento">
+            </p>
+            <p>
+                <label for="Sexo">Sexo: </label>
+                <input type="radio" name="radiosexo" id="imasculino" checked>
+                <label for="imasculino">Masculino</label>
+                <input type="radio" name="radiosexo" id="ifeminino">
+                <label for="ifeminino">Feminino</label>
+            </p>
+            <p>
+                <input type="submit" value="Verificar" onclick="carregar()">
+            </p>
+
+        </div>
+
+        <div id="resultado">
+
+
+        </div>
+
+    </section>
+   
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+
+
+<!--Aqui começa o JAVASCRIPT-->
+    <script>
+        function carregar() {
+            var data = new Date(); // função que retorna a data completa atual
+            var ano = data.getFullYear(); // pega o ano descrito com quatro digitos. Ex: 2024
+
+            var resultado = window.document.getElementById("resultado");
+
+            var nascimento = window.document.getElementById("inascimento");
+
+            if (nascimento.value.length == 0 || nascimento.value > ano) {
+                window.alert ("Verifique os dados e tente novamente");
+            }
+
+            else {
+                var sexo = window.document.getElementsByName("radiosexo"); //lembrando que esse comando DOM (pegar elementos por nome) recebe um vetor que, nesse caso, tem índices 0 e 1 devido as duas opções (masculino ou feminino) colocados no formulario HTML.
+                var idade = ano - Number(nascimento.value);
+                var genero = "";
+                var img = document.createElement('img'); // cria uma tag pelo proprio javascript do tipo img (tag para imagens)
+                img.setAttribute('id', 'foto'); // coloca uma id="foto" nessa tag img atraves do javascript
+            }
+
+            if (sexo[0].checked) { // se a variavel sexo tem o valor 1 no índice 0, o genero é homem
+                genero = "Homem";
+                if (idade >= 0 && idade < 10) {
+                    img.setAttribute('src', "fotos/bebe-menino.jpg")
+                }
+
+                else if (idade < 21) {
+                    img.setAttribute('src', "fotos/jovem-homem.jpg");
+
+                }
+
+                else if (idade < 50) {
+                    img.setAttribute('src', "fotos/homem-adulto.webp");
+
+                }
+
+                else {
+                    img.setAttribute('src', "fotos/homem-idoso.jpg");
+
+                }
+
+
+            }
+
+            else if (sexo[1].checked) { // se a variavel sexo tem o segundo índice com valor 1, o genero é "mulher".
+                genero = "Mulher";
+
+                if (idade >= 0 && idade < 10) {
+                    img.setAttribute('src', "fotos/bebe-menina.webp");
+                    
+                }
+
+                else if (idade < 21) {
+                    img.setAttribute('src', "fotos/jovem-mulher.jpg")
+
+                }
+
+                else if (idade < 50) {
+                    img.setAttribute('src', "fotos/mulher-adulta.jpg")
+
+                }
+
+                else {
+                    img.setAttribute('src', "fotos/mulher-idosa.jpeg")
+
+                }
+
+            }
+        
+    resultado.style.textAlign = 'center';
+    resultado.innerHTML = `Detectamos ${genero} com ${idade} anos.`;
+    resultado.appendChild(img); // é com essa função appendChild que a imagem é adicionada abaixo da frase que se encontra dentro da DIV com ID Resultado.
+    img.style.width = "490px" //colocando largura máxima de 490 pixels via javascript.
+
+    }
+
+
+    </script>

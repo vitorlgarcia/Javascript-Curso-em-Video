@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio While</title>
+
+    <style>
+        body {
+            background-color: rgb(82, 82, 221);
+            font: normal 15pt Arial;
+            
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.438);
+        }
+
+        div {
+            padding: 6px;
+            margin-top: 1em;
+        }
+
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Desafio While</h1>
+    </header>
+
+    <section>
+        <div>
+            <label for="inumber">Número: </label>
+            <input type="number" name="number" id="inumber">
+            <input type="submit" value="Gerar Tabuada" onclick="calcular()">
+
+        </div>
+            
+        <div>
+            <select name="tabuada" id="itabuada" size="10">
+                <option value="intro">Selecione um numero acima...</option>
+            </select>
+
+        </div>
+
+    </section>
+   
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+
+    <script>
+        function calcular() {
+            var num = Number(window.document.getElementById("inumber").value);
+
+            var resultado = window.document.getElementById("itabuada");
+
+            // Lembrando que o comando getElement extrai um objeto devido a natureza do comando input no html. O método .value faz com que retorne o valor digitado, porém no formato String. E a função Number() transforma tudo isso em número.
+
+            var iteracao = 0;
+            var produto = 0;
+            resultado.innerHTML = ""; // comando usado para apagar tudo que foi escrito anteriormente
+            while (iteracao <= 10) {
+                var item = document.createElement('option'); //variavel criada item recebe uma nova tag HTML do tipo option (essa tag é parte da tag select).
+                produto = num * iteracao;
+                item.text += `${num} X ${iteracao} = ${produto}`;  // o método text é usado dentro da tag option (id = "item") para adicionar um texto na option em questão.
+                resultado.appendChild(item); // a tag option recem-criada é colocada dentro da tag Select com id="resultado". Em cada iteração do While é criada uma nova tag option e a mesma é salva na tag select.
+
+
+                item.value = `tab${iteracao}` // comando que dará nome para todas as tags option. Comando útil para linguagens PHP, por exemplo.
+                
+                iteracao++;
+                
+            }
+        }
+
+
+    </script>

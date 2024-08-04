@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+
+    <!--Eventos DOM diz respeito as ações que podem acontecer em um site e como controlar via javascript (DOM). Nesse exemplo será usada uma div e eventos como clique do mouse ou o simples passar do mouse sobre ele pode gerar alguma ação no javascript-->
+
+    <!--Geralmente são chamadas funções no javascript para tratar cada evento que se deseja trabalhar-->
+
+    <style>
+        div#area {
+            font: normal 20pt Arial;
+            background: rgb(50, 145, 50);
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+
+    </style>
+    
+
+
+</head>
+<body>
+    <div id="area" onclick="clicar()" onmouseenter="entrar()" onmouseleave="sair()">
+        <!--Criando evento dentro do HTML. É possível criar evento direto no Javascript...-->
+
+
+        interaja...
+
+    </div>
+
+
+    <script>
+
+        // O modo de chamar o evento pelo próprio javascript é o mais convencional.
+        
+        /*
+        var a = window.document.getElementById('area')
+        a.addEventListener('click', clicar);
+        a.addEventListener('mouseenter', entrar);
+        a.addEventListener('mouseleave', sair);
+
+        */
+
+
+        function clicar() {
+            var a = window.document.getElementById('area');
+            a.innerText = "Clicou"
+        }
+
+        function entrar() {
+            var b = window.document.getElementById('area')
+            b.style.background = 'red';
+            b.innerText = "Entrou";
+      }
+
+        function sair() {
+            var c = window.document.querySelector('div#area');
+            c.style.background = "green";
+            c.innerText = "Saiu";
+        }
+
+    </script>
+
+
+</body>
+</html>
