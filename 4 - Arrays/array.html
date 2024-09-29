@@ -109,7 +109,7 @@
             
         }
 
-        function nalista(numero, lista) { // recebe o novo numero no formato string e recebe o vetor completo até o momento. Se o número recém-digitado não estiver presente (se o indexOF não retornar -1) no vetor, signifca que ele é novo número. Daí o retorno é TRUE.
+        function nalista(numero, lista) { // recebe o novo numero no formato string e recebe o vetor completo até o momento. Se o número recém-digitado não estiver presente (se o indexOF retornar -1) no vetor, signifca que ele é novo número. Daí o retorno é FALSE. Retorna TRUE se for encontrado mesmo numero na lista.
 
             if (lista.indexOf(Number(numero)) != -1) {
                 return true;
